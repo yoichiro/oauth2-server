@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+  <bean id="token" class="jp.eisbahn.oauth2.server.endpoint.Token">
+    <property name="grantHandlerProvider">
+      <bean class="jp.eisbahn.oauth2.server.granttype.GrantHandlerProvider">
+        <property name="grantHandlers">
+          <map>
+            <entry key="authorization_code">
+              <bean class="jp.eisbahn.oauth2.server.granttype.impl.AuthorizationCode">
+                <property name="clientCredentialFetcher" ref="clientCredentialFetcher" />
+              </bean>
+            </entry>
+            <entry key="refresh_token">
+              <bean class="jp.eisbahn.oauth2.server.granttype.impl.RefreshToken">
+                <property name="clientCredentialFetcher" ref="clientCredentialFetcher" />
+              </bean>
+            </entry>
+            <entry key="password">
+              <bean class="jp.eisbahn.oauth2.server.granttype.impl.Password">
+                <property name="clientCredentialFetcher" ref="clientCredentialFetcher" />
+              </bean>
+            </entry>
+            <entry key="client_credentials">
+              <bean class="jp.eisbahn.oauth2.server.granttype.impl.ClientCredentials">
+                <property name="clientCredentialFetcher" ref="clientCredentialFetcher" />
+              </bean>
+            </entry>
+          </map>
+        </property>
+      </bean>
+    </property>
+    <property name="clientCredentialFetcher" ref="clientCredentialFetcher" />
+    <property name="dataHandlerFactory" ref="dataHandlerFactory" />
+  </bean>
+  
+  <bean id="clientCredentialFetcher"
+        class="jp.eisbahn.oauth2.server.fetcher.clientcredential.ClientCredentialFetcherImpl">
+  </bean>
+  
+  <bean id="dataHandlerFactory"
+        class="jp.eisbahn.oauth2.server.integration.DummyDataHandlerFactoryImpl">
+  </bean>
+  
+</beans>

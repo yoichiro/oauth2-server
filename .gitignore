@@ -1,0 +1,5 @@
+.project
+.classpath
+target/
+.DS_Store
+*~
