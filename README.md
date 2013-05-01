@@ -1,8 +1,20 @@
 oauth2-server
 ===================
 
-This project is an implementation for OAuth 2.0 Specification.
+This project is an implementation for [OAuth 2.0 Specification](http://tools.ietf.org/html/rfc6749).
 Especially, the protocol of the server area is covered by this project.
+
+Current supported Grant types
+-----------------------------
+
+* Authorization Code Grant
+* Resource Owner Password Credentials Grant
+* Client Credentials Grant
+
+Current supported token types
+-----------------------------
+
+* Bearer(http://tools.ietf.org/html/rfc6750)
 
 How to use
 ----------
