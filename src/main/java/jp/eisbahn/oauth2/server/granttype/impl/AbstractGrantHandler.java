@@ -27,6 +27,7 @@ import jp.eisbahn.oauth2.server.granttype.GrantHandler;
 import jp.eisbahn.oauth2.server.models.AccessToken;
 import jp.eisbahn.oauth2.server.models.AuthInfo;
 import jp.eisbahn.oauth2.server.models.Request;
+import jp.eisbahn.oauth2.server.utils.Util;
 
 /**
  * This abstract class provides some common functions for this sub classes.
@@ -93,11 +94,7 @@ public abstract class AbstractGrantHandler implements GrantHandler {
 	 */
 	protected String getParameter(Request request, String name)
 			throws OAuthError.InvalidRequest {
-		String value = request.getParameter(name);
-		if (StringUtils.isEmpty(value)) {
-			throw new OAuthError.InvalidRequest("'" + name + "' not found");
-		}
-		return value;
+		return Util.getParameter(request, name);
 	}
 
 }

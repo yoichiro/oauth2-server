@@ -105,7 +105,7 @@ public class ProtectedResource {
 	}
 
 	/**
-	 * This class has the information about an OAuth2.0 request.
+	 * This class has the information about an OAuth2.0 response.
 	 * 
 	 * If a check of the request is passed by {@link ProtectedResource},
 	 * this instance will be created. Each endpoint of API supported by

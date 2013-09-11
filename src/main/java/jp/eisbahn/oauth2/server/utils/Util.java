@@ -22,7 +22,11 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 
+import jp.eisbahn.oauth2.server.exceptions.OAuthError;
+import jp.eisbahn.oauth2.server.models.Request;
+
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.lang3.StringUtils;
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -78,6 +82,24 @@ public class Util {
 		} catch (IOException e) {
 			throw new IllegalStateException(e);
 		}
+	}
+
+	/**
+	 * Retrieve the parameter value against the parameter name.
+	 * 
+	 * @param request The request object which has each parameters.
+	 * @param name The parameter name which you want to retrieve.
+	 * @return The parameter value. This never be null.
+	 * @throws OAuthError.InvalidRequest If the parameter is not found or is
+	 * empty string.
+	 */
+	public static String getParameter(Request request, String name)
+			throws OAuthError.InvalidRequest {
+		String value = request.getParameter(name);
+		if (StringUtils.isEmpty(value)) {
+			throw new OAuthError.InvalidRequest("'" + name + "' not found");
+		}
+		return value;
 	}
 
 }

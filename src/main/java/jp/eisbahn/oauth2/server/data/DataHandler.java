@@ -259,4 +259,27 @@ public abstract class DataHandler {
 	 */
 	public abstract AuthInfo getAuthInfoById(String id);
 
+	public abstract boolean validateClientForAuthorization(String clientId,
+			String responseType);
+	
+	public abstract boolean validateRedirectUri(String clientId, String redirectUri);
+	
+	public abstract boolean validateScope(String clientId, String[] scopes);
+	
+	public abstract boolean validateDisplay(String clientId, String display);
+	
+	public abstract boolean validatePrompt(String clientId, String prompt);
+	
+	public abstract boolean validateUiLocales(String clientId, String[] uiLocales);
+	
+	public abstract boolean validateClaimsLocales(String clientId, String[] claimsLocales);
+	
+	public abstract boolean validateIdTokenHint(String clientId, String idTokenHint);
+	
+	public abstract boolean validateLoginHint(String clientId, String loginHint);
+	
+	public abstract boolean validateAcrValues(String clientId, String[] acrValues);
+
+	public abstract boolean validateRegistration(String clientId, String value);
+
 }
